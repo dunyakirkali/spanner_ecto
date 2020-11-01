@@ -38,3 +38,9 @@ SpannerEcto.Proxy.stop(pid)
 
 DBConnection.execute(conn, %SpannerEcto.Query{statement: "SELECT * FROM Countries"}, [])
 ```
+
+## How to use the Ecto Adapter
+
+```eixir
+SpannerEctoTest.Repo.all(SpannerEctoTest.Country)
+```
