@@ -22,7 +22,8 @@ defmodule SpannerEcto.MixProject do
   defp deps do
     [
       {:google_api_spanner, "~> 0.23"},
-      {:goth, "~> 1.2.0"}
+      {:goth, "~> 1.2.0"},
+      {:db_connection, "~> 2.0.6"}
     ]
   end
 end

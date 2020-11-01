@@ -14,7 +14,7 @@ defmodule SpannerEcto.Proxy do
     GenServer.stop(pid, :normal)
   end
 
-  def query(pid, statement) do
+  def query(pid, statement, params) do
     GenServer.call(pid, {:query, statement})
   end
 
@@ -66,7 +66,7 @@ defmodule SpannerEcto.Proxy do
   def handle_call({:query, statement}, _, {client, session}) do
     query = %GoogleApi.Spanner.V1.Model.ExecuteSqlRequest{sql: statement}
 
-    {:ok, result_set} =
+    result =
       GoogleApi.Spanner.V1.Api.Projects.spanner_projects_instances_databases_sessions_execute_sql(
         client,
         session.name,
@@ -75,7 +75,7 @@ defmodule SpannerEcto.Proxy do
 
     {
       :reply,
-      result_set,
+      result,
       {client, session}
     }
   end

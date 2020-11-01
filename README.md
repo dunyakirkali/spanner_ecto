@@ -28,4 +28,13 @@ query = %GoogleApi.Spanner.V1.Model.ExecuteSqlRequest{sql: "SELECT * FROM Countr
 
 SpannerEcto.Proxy.query(pid, "SELECT * FROM Countries")
 
+SpannerEcto.Proxy.stop(pid)
+```
+
+## How to use DBConnection
+
+```elixir
+{:ok, conn} = DBConnection.start_link(SpannerEcto.Protocol, project: "epuu-293412", instance: "epuu", database: "epuu_production")
+
+DBConnection.execute(conn, %SpannerEcto.Query{statement: "SELECT * FROM Countries"}, [])
 ```
