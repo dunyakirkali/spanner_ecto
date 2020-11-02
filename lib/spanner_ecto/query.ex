@@ -11,7 +11,7 @@ defmodule SpannerEcto.Query do
     end
 
     defp normalize_row(row, columns) do
-      row |> normalize_row(columns, []) |> Enum.reverse
+      row |> normalize_row(columns, [])
     end
 
     defp normalize_row([val | vals], [col | cols], acc) do
